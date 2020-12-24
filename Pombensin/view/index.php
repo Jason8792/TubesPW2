@@ -1,3 +1,22 @@
+<?php
+session_start();
+include_once 'utility/PDO_util.php';
+include_once 'controller/membercontroller.php';
+include_once 'dao/BahanBakarDAO.php';
+include_once 'dao/CabangDAO.php';
+include_once 'dao/KaryawanDAO.php';
+include_once 'dao/MemberDAO.php';
+include_once 'dao/TransaksiDAO.php';
+include_once 'model/bahan_bakar.php';
+include_once 'model/cabang.php';
+include_once 'model/karyawan.php';
+include_once 'model/member.php';
+include_once 'model/transaksi.php';
+if (!isset($_SESSION['my_session'])) {
+    $_SESSION['my_session'] = false;
+}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -61,9 +80,6 @@
 //              Umum
                 case 'home':
                     include_once './home.php';
-                    break;
-                case 'about':
-                    include_once './about.php';
                     break;
                 case 'login':
                     include_once './login.php';

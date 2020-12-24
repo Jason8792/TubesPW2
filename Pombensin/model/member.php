@@ -1,11 +1,11 @@
 <?php
-class user{
+class member{
     private $id_member;
-    private $name_member;
-    private $email;
+    private $nama_member;
     private $poin;
     private $tanggal_ulang_tahun;
     private $kadaluarsa;
+    private $email;
 
     /**
      * @return mixed
@@ -26,33 +26,17 @@ class user{
     /**
      * @return mixed
      */
-    public function getNameMember()
+    public function getNamaMember()
     {
-        return $this->name_member;
+        return $this->nama_member;
     }
 
     /**
-     * @param mixed $name_member
+     * @param mixed $nama_member
      */
-    public function setNameMember($name_member)
+    public function setNamaMember($nama_member)
     {
-        $this->name_member = $name_member;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param mixed $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
+        $this->nama_member = $nama_member;
     }
 
     /**
@@ -103,4 +87,19 @@ class user{
         $this->kadaluarsa = $kadaluarsa;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
 }
