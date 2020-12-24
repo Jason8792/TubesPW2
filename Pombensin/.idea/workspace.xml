@@ -37,6 +37,7 @@
       <workItem from="1601215349044" duration="7845000" />
       <workItem from="1601256215434" duration="677000" />
       <workItem from="1608792036030" duration="4234000" />
+      <workItem from="1608816320823" duration="1648000" />
     </task>
     <servers />
   </component>
@@ -44,17 +45,25 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="275" y="0" width="816" height="728" key="#Intentions" timestamp="1608817933711">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="0" width="816" height="728" key="#Intentions/0.0.1366.728@0.0.1366.728" timestamp="1608817933711" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1601257059242">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1601257059242" />
-    <state x="495" y="86" key="NewPhpClassDialog" timestamp="1608795589224">
+    <state x="495" y="86" key="NewPhpClassDialog" timestamp="1608817137690">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="495" y="86" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1608795589224" />
-    <state x="517" y="287" key="NewPhpFileDialog" timestamp="1608795716047">
+    <state x="495" y="86" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1608817137690" />
+    <state x="517" y="287" key="NewPhpFileDialog" timestamp="1608817218229">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="517" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1608795716047" />
+    <state x="517" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1608817218229" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1608817899499">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.0.1366.728@0.0.1366.728" timestamp="1608817899499" />
   </component>
 </project>

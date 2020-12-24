@@ -40,10 +40,10 @@
                 <li><a href="?navito=bahanbakar">Bahan Bakar</a></li>
                 <li><a href="?navito=editkaryawan">Karyawan</a></li>
                 <li><a href="?navito=editmember">Member</a></li>
+                <li><a href="?navito=catatan">Catatan keuangan</a></li>
 <!--             Punya Karyawan   -->
                 <li><a href="?navito=transaksi">Transaksi</a></li>
                 <li><a href="?navito=showkaryawan">Karyawan</a></li>
-                <li><a href="?navito=showmember">Member</a></li>
 <!--             Punya Member  -->
                 <li><a href="?navito=rating">Rating</a></li>
                 <li><a href="poin">Poin</a></li>
@@ -70,9 +70,6 @@
                     break;
                 case 'logout':
                     break;
-                case 'pendaftaran':
-                    include_once './pendaftaran.php';
-                    break;
 //              Owner
                 case 'bahanbakar':
                     include_once './bahanbakar.php';
@@ -83,15 +80,15 @@
                 case 'editmember':
                     include_once './editmember.php';
                     break;
+                case 'catatan':
+                    include_once './catatan.php';
+                    break;
 //              Karyawan
                 case 'transaksi':
                     include_once './transaksi.php';
                     break;
                 case 'showkaryawan':
                     include_once './showkaryawan.php';
-                    break;
-                case 'showmember':
-                    include_once './showmember.php';
                     break;
 //              Member
                 case 'rating':
