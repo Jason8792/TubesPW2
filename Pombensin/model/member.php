@@ -6,6 +6,7 @@ class member{
     private $tanggal_ulang_tahun;
     private $kadaluarsa;
     private $email;
+    private $usernamemember;
 
     /**
      * @return mixed
@@ -101,5 +102,21 @@ class member{
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsernamemember()
+    {
+        return $this->usernamemember;
+    }
+
+    /**
+     * @param mixed $usernamemember
+     */
+    public function setUsernamemember($usernamemember)
+    {
+        $this->usernamemember = $usernamemember;
     }
 }

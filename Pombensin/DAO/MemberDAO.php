@@ -12,14 +12,30 @@ class MemberDAO{
     }
 
     /**
+     * @param $usernamemember
+     * @return member
+     */
+
+    public function logmember($usernamemember) {
+        $link = PDO_util::createConnection();
+        $query = "SELECT * FROM member WHERE username = ?";
+        $stmt = $link->prepare($query);
+        $stmt->bindParam(1, $usernamemember);
+        $stmt->setFetchMode(PDO::FETCH_OBJ);
+        $stmt->execute();
+        PDO_util::closeConnection($link);
+        return $stmt->fetchObject('member');
+    }
+    /**
      * @param $id_member
      * @return member
      */
+
     public function fetchMember($id_member) {
         $link = PDO_util::createConnection();
         $query = "SELECT * FROM member WHERE id_member = ?";
         $stmt = $link->prepare($query);
-        $stmt->bindParam(1, $id_karyawan);
+        $stmt->bindParam(1, $id_member);
         $stmt->setFetchMode(PDO::FETCH_OBJ);
         $stmt->execute();
         PDO_util::closeConnection($link);
@@ -29,7 +45,7 @@ class MemberDAO{
     public function addMember(member $member) {
         $result = 0;
         $link = PDO_util::createConnection();
-        $query = "INSERT into member (nama_member, poin, tanggal_ulang_tahun, kadaluarsa, email) VALUES (?,?,?,?,?)";
+        $query = "INSERT into member (nama_member, poin, tanggal_ulang_tahun, kadaluarsa, email, username) VALUES (?,?,?,?,?,?)";
         $stmt = $link->prepare($query);
         $stmt->bindValue(1, $member->getNamaMember());
         $stmt->bindValue(2, $member->getPoin());

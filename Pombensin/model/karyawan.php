@@ -6,6 +6,7 @@ class karyawan {
     private $nama_karyawan;
     private $nama_jabatan;
     private $rating;
+    private $usernamekaryawan;
     private $karyawan_id_cabang;
 
     /**
@@ -86,5 +87,21 @@ class karyawan {
     public function setKaryawanIdCabang($karyawan_id_cabang)
     {
         $this->karyawan_id_cabang = $karyawan_id_cabang;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsernamekaryawan()
+    {
+        return $this->usernamekaryawan;
+    }
+
+    /**
+     * @param mixed $usernamekaryawan
+     */
+    public function setUsernamekaryawan($usernamekaryawan)
+    {
+        $this->usernamekaryawan = $usernamekaryawan;
     }
 }

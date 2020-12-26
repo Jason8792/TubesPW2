@@ -1,17 +1,20 @@
 <?php
 session_start();
 include_once 'utility/PDO_util.php';
-include_once 'controller/membercontroller.php';
+include_once 'controller/usercontroller.php';
 include_once 'dao/BahanBakarDAO.php';
 include_once 'dao/CabangDAO.php';
 include_once 'dao/KaryawanDAO.php';
 include_once 'dao/MemberDAO.php';
 include_once 'dao/TransaksiDAO.php';
+include_once 'dao/UserDAO.php';
 include_once 'model/bahan_bakar.php';
 include_once 'model/cabang.php';
 include_once 'model/karyawan.php';
 include_once 'model/member.php';
 include_once 'model/transaksi.php';
+include_once 'model/user.php';
+
 if (!isset($_SESSION['my_session'])) {
     $_SESSION['my_session'] = false;
 }
@@ -53,20 +56,34 @@ if (!isset($_SESSION['my_session'])) {
             <ul>
                 <li><a href="?navito=home">Home</a></li>
 <!--             Punya Umum   -->
-                <li><a href="?navito=login">Log In</a></li>
+                <?php
+                if($_SESSION['my_session']){?>
                 <li><a href="navito=logout">Log Out</a></li>
+                <?php
+                }
+                else{
+                ?>
+                <li><a href="?navito=login">Log In</a></li>
+                <?php } ?>
 <!--             Punya Owner   -->
+
                 <li><a href="?navito=bahanbakar">Bahan Bakar</a></li>
                 <li><a href="?navito=editkaryawan">Karyawan</a></li>
                 <li><a href="?navito=editmember">Member</a></li>
                 <li><a href="?navito=catatan">Catatan keuangan</a></li>
 <!--             Punya Karyawan   -->
+                <?php
+                if($_SESSION['status']==0){
+                ?>
                 <li><a href="?navito=transaksi">Transaksi</a></li>
                 <li><a href="?navito=showkaryawan">Karyawan</a></li>
+                <?php}?>
 <!--             Punya Member  -->
+                <?php
+                else if($_SESSION['status']==1){?>
                 <li><a href="?navito=rating">Rating</a></li>
                 <li><a href="poin">Poin</a></li>
-
+                <?php } ?>
             </ul>
         </nav>
         <div style="clear:both;"></div>
