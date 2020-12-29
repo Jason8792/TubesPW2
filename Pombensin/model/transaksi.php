@@ -8,6 +8,8 @@ class transaksi {
     private $id_member;
     private $id_barang;
     private $id_cabang;
+    private $nama_cabang;
+
 
     /**
      * @return mixed
@@ -103,5 +105,21 @@ class transaksi {
     public function setIdCabang($id_cabang)
     {
         $this->id_cabang = $id_cabang;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNamaCabang()
+    {
+        return $this->nama_cabang;
+    }
+
+    /**
+     * @param mixed $nama_cabang
+     */
+    public function setNamaCabang($nama_cabang)
+    {
+        $this->nama_cabang = $nama_cabang;
     }
 }

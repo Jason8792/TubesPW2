@@ -1,17 +1,14 @@
 <?php
-class UserDAO{
-    /**
-     * @param $username
-     * @param $password
-     * @return user
-     */
-    public function login($username,$password){
-        $status = 0;
-        $link= PDO_util::createConnection();
-        $query = "SELECT * FROM user WHERE Username=? AND password=? ";
+
+class UserDAO
+{
+
+    public function login($username)
+    {
+        $link = PDO_util::createConnection();
+        $query = "SELECT * FROM `user` WHERE Username = ?";
         $stmt = $link->prepare($query);
-        $stmt->bindParam(1,$username);
-        $stmt->bindParam(2,$password);
+        $stmt->bindParam(1, $username);
         $stmt->setFetchMode(PDO::FETCH_OBJ);
         $stmt->execute();
         PDO_util::closeConnection($link);

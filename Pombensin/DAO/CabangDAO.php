@@ -16,4 +16,13 @@ class CabangDAO {
         PDO_util::closeConnection($link);
         return $stmt->fetchObject('cabang');
     }
+
+    public function fetchCabangData(){
+        $link = PDO_util::createConnection();
+        $query = "SELECT * FROM cabang";
+        $result = $link->query($query);
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'cabang');
+        PDO_util::closeConnection($link);
+        return $result;
+    }
 }

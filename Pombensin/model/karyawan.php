@@ -5,9 +5,11 @@ class karyawan {
     private $id_karyawan;
     private $nama_karyawan;
     private $nama_jabatan;
-    private $rating;
-    private $usernamekaryawan;
+    private $Rating;
+    private $username;
     private $karyawan_id_cabang;
+    private $nama_cabang;
+
 
     /**
      * @return mixed
@@ -62,15 +64,15 @@ class karyawan {
      */
     public function getRating()
     {
-        return $this->rating;
+        return $this->Rating;
     }
 
     /**
-     * @param mixed $rating
+     * @param mixed $Rating
      */
-    public function setRating($rating)
+    public function setRating($Rating)
     {
-        $this->rating = $rating;
+        $this->Rating = $Rating;
     }
 
     /**
@@ -92,16 +94,32 @@ class karyawan {
     /**
      * @return mixed
      */
-    public function getUsernamekaryawan()
+    public function getUsername()
     {
-        return $this->usernamekaryawan;
+        return $this->username;
     }
 
     /**
-     * @param mixed $usernamekaryawan
+     * @param mixed $username
      */
-    public function setUsernamekaryawan($usernamekaryawan)
+    public function setUsername($username)
     {
-        $this->usernamekaryawan = $usernamekaryawan;
+        $this->username = $username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNamaCabang()
+    {
+        return $this->nama_cabang;
+    }
+
+    /**
+     * @param mixed $nama_cabang
+     */
+    public function setNamaCabang($nama_cabang)
+    {
+        $this->nama_cabang = $nama_cabang;
     }
 }

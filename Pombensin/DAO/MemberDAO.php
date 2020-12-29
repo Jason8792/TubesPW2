@@ -52,6 +52,7 @@ class MemberDAO{
         $stmt->bindValue(3, $member->getTanggalUlangTahun());
         $stmt->bindValue(4, $member->getKadaluarsa());
         $stmt->bindValue(5, $member->getEmail());
+        $stmt->bindValue(6,$member->getUsername());
         $link->beginTransaction();
         if ($stmt->execute()) {
             $link->commit();

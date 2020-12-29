@@ -1,24 +1,24 @@
 <?php
 
 class user{
-    private $username;
+    private $Username;
     private $password;
-    private $status;
+    private $kode_ref;
 
     /**
      * @return mixed
      */
     public function getUsername()
     {
-        return $this->username;
+        return $this->Username;
     }
 
     /**
      * @param mixed $username
      */
-    public function setUsername($username)
+    public function setUsername($Username)
     {
-        $this->username = $username;
+        $this->Username = $Username;
     }
 
     /**
@@ -40,16 +40,16 @@ class user{
     /**
      * @return mixed
      */
-    public function getStatus()
+    public function getKoderef()
     {
-        return $this->status;
+        return $this->kode_ref;
     }
 
     /**
-     * @param mixed $status
+     * @param mixed $kode_ref
      */
-    public function setStatus($status)
+    public function setKoderef($kode_ref)
     {
-        $this->status = $status;
+        $this->kode_ref = $kode_ref;
     }
 }

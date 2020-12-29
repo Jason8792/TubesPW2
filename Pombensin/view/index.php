@@ -1,25 +1,31 @@
 <?php
 session_start();
-include_once 'utility/PDO_util.php';
-include_once 'controller/usercontroller.php';
-include_once 'dao/BahanBakarDAO.php';
-include_once 'dao/CabangDAO.php';
-include_once 'dao/KaryawanDAO.php';
-include_once 'dao/MemberDAO.php';
-include_once 'dao/TransaksiDAO.php';
-include_once 'dao/UserDAO.php';
-include_once 'model/bahan_bakar.php';
-include_once 'model/cabang.php';
-include_once 'model/karyawan.php';
-include_once 'model/member.php';
-include_once 'model/transaksi.php';
-include_once 'model/user.php';
+
+include_once '../utility/PDO_util.php';
+include_once '../controller/usercontroller.php';
+include_once '../controller/bahancontroller.php';
+include_once '../controller/karyawancontroller.php';
+include_once '../controller/membercontroller.php';
+include_once '../controller/catatancontroller.php';
+include_once '../controller/catatancabangcontroller.php';
+include_once '../DAO/BahanBakarDAO.php';
+include_once '../DAO/CabangDAO.php';
+include_once '../DAO/KaryawanDAO.php';
+include_once '../DAO/MemberDAO.php';
+include_once '../DAO/TransaksiDAO.php';
+include_once '../DAO/UserDAO.php';
+include_once '../model/bahan_bakar.php';
+include_once '../model/cabang.php';
+include_once '../model/karyawan.php';
+include_once '../model/member.php';
+include_once '../model/transaksi.php';
+include_once '../model/user.php';
 
 if (!isset($_SESSION['my_session'])) {
     $_SESSION['my_session'] = false;
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,6 +51,7 @@ if (!isset($_SESSION['my_session'])) {
         <link rel="stylesheet" type="text/css" href="../css/datatables.css">
 
         <script type="text/javascript" src="../js/functional_js.js"></script>
+        <script type="text/javascript" src="../js/controller.js"></script>
     </head>
     <body>
         <!--Tag for header-->
@@ -55,67 +62,80 @@ if (!isset($_SESSION['my_session'])) {
         <nav>
             <ul>
                 <li><a href="?navito=home">Home</a></li>
-<!--             Punya Umum   -->
-                <?php
-                if($_SESSION['my_session']){?>
-                <li><a href="navito=logout">Log Out</a></li>
-                <?php
-                }
-                else{
-                ?>
-                <li><a href="?navito=login">Log In</a></li>
-                <?php } ?>
-<!--             Punya Owner   -->
-
-                <li><a href="?navito=bahanbakar">Bahan Bakar</a></li>
-                <li><a href="?navito=editkaryawan">Karyawan</a></li>
-                <li><a href="?navito=editmember">Member</a></li>
-                <li><a href="?navito=catatan">Catatan keuangan</a></li>
-<!--             Punya Karyawan   -->
-                <?php
-                if($_SESSION['status']==0){
-                ?>
-                <li><a href="?navito=transaksi">Transaksi</a></li>
-                <li><a href="?navito=showkaryawan">Karyawan</a></li>
-                <?php}?>
-<!--             Punya Member  -->
-                <?php
-                else if($_SESSION['status']==1){?>
-                <li><a href="?navito=rating">Rating</a></li>
-                <li><a href="poin">Poin</a></li>
+                <!--             Punya Umum   -->
+                <?php if ($_SESSION['my_session']) { ?>
+                    <li><a href="?navito=logout">Log Out</a></li>
+                    <?php if ($_SESSION['session_job']  == 'Owner') { ?>
+                        <!--             Punya Owner   -->
+                        <li><a href="?navito=bahanbakar">Bahan Bakar</a></li>
+                        <li><a href="?navito=editkaryawan">Karyawan</a></li>
+                        <li><a href="?navito=editmember">Member</a></li>
+                        <li><a href="?navito=catatan">Catatan keuangan</a></li>
+                        <li><a href="?navito=catatancab">Catatan Cabang</a></li>
+                    <?php } else if ($_SESSION['session_job']  == 'Karyawan') { ?>
+                        <!--             Punya Karyawan   -->
+                        <li><a href="?navito=transaksi">Transaksi</a></li>
+                        <li><a href="?navito=showkaryawan">Karyawan</a></li>
+                    <?php } else if ($_SESSION['session_job']  == 'member') { ?>
+                        <!--             Punya Member  -->
+                        <li><a href="?navito=rating">Rating</a></li>
+                        <li><a href="poin">Poin</a></li>
+                    <?php } ?>
+                <?php } else { ?>
+                    <li><a href="?navito=login">Log In</a></li>
                 <?php } ?>
             </ul>
         </nav>
         <div style="clear:both;"></div>
         <!--Tag for content-->
         <main>
-<!--    ini masih template dasar, tunggu dbnya sudah fix, baru bisa diupdate jadi Model,View,Controller -->
-
             <?php
             $nav = filter_input(INPUT_GET, "navito");
             switch ($nav) {
 //              Umum
                 case 'home':
-                    include_once './home.php';
+                    include_once 'home.php';
                     break;
                 case 'login':
-                    include_once './login.php';
+                    $user = new usercontroller();
+                    $user->index();
                     break;
                 case 'logout':
+                    $user = new usercontroller();
+                    $user->logout();
                     break;
-//              Owner
+////              Owner
                 case 'bahanbakar':
-                    include_once './bahanbakar.php';
+                    $bahanbakar = new bahancontroller();
+                    $bahanbakar->index();
+                    break;
+                case 'bahan_bakar_update':
+                    $bahanbakar = new bahancontroller();
+                    $bahanbakar->update();
                     break;
                 case 'editkaryawan':
-                    include_once './editkaryawan.php';
+                    $editkar = new karyawancontroller();
+                    $editkar->index();
+                    break;
+                case 'updatekaryawan':
+                    $editkar = new karyawancontroller();
+                    $editkar->editkaryawan();
                     break;
                 case 'editmember':
-                    include_once './editmember.php';
+                    $editmem = new membercontroller();
+                    $editmem->index();
+                    break;
+                case 'member_update':
+                    $editmem = new membercontroller();
+                    $editmem->update();
                     break;
                 case 'catatan':
-                    include_once './catatan.php';
+                    $catatan = new catatancontroller();
+                    $catatan->index();
                     break;
+                case 'catatancab':
+                    $catatan= new catatancabangcontroller();
+                    $catatan->index();
 //              Karyawan
                 case 'transaksi':
                     include_once './transaksi.php';
@@ -158,5 +178,11 @@ if (!isset($_SESSION['my_session'])) {
                 $('#tableId').DataTable();
             });
         </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#tablecabang').DataTable();
+            });
+        </script>
+
     </body>
 </html>

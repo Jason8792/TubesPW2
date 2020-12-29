@@ -24,25 +24,19 @@ class TransaksiDAO {
 
     public function transaksiPerbulan() {
         $link = PDO_util::createConnection();
-        $query = "SELECT COUNT(jumlah_harga) FROM transaksi";
+        $query = "SELECT MONTH (tanggal_transaksi) AS 'tanggal_transaksi', SUM(jumlah_harga) as 'jumlah_harga' FROM transaksi GROUP BY month(tanggal_transaksi)";
         $result = $link->query($query);
-        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Album');
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'transaksi');
         PDO_util::closeConnection($link);
         return $result;
     }
 
-    /**
-     * @param $id_cabang
-     * @return transaksi
-     */
-    public function transaksiPerbulanCabang($id_cabang) {
+    public function transaksiPerbulanCabang() {
         $link = PDO_util::createConnection();
-        $query = "SELECT COUNT(jumlah_harga) FROM transaksi WHERE id_cabang = ?";
-        $stmt = $link->prepare($query);
-        $stmt->bindParam(1, $id_cabang);
-        $stmt->setFetchMode(PDO::FETCH_OBJ);
-        $stmt->execute();
+        $query = "SELECT c.nama_cabang AS 'nama_cabang' ,MONTH (t.tanggal_transaksi) AS 'tanggal_transaksi', SUM(t.jumlah_harga) as 'jumlah_harga' FROM transaksi t JOIN cabang c on t.id_cabang = c.id_cabang GROUP BY month(t.tanggal_transaksi),c.nama_cabang";
+        $result = $link->query($query);
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,'transaksi');
         PDO_util::closeConnection($link);
-        return $stmt->fetchObject('transaksi');
+        return $result;
     }
 }

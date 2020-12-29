@@ -4,7 +4,7 @@
 class KaryawanDAO {
     public function fetchKaryawanData() {
         $link = PDO_util::createConnection();
-        $query = "SELECT * FROM karyawan";
+        $query = "SELECT k.* , c.nama_cabang FROM karyawan k JOIN cabang c ON k.karyawan_id_cabang=c.id_cabang ORDER by k.Rating";
         $result = $link->query($query);
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'karyawan');
         PDO_util::closeConnection($link);
@@ -44,12 +44,13 @@ class KaryawanDAO {
     public function addKaryawan(karyawan $karyawan) {
         $result = 0;
         $link = PDO_util::createConnection();
-        $query = "INSERT into karyawan (nama_karyawan, nama_jabatan, rating, karyawan_id_cabang) VALUES (?,?,?,?)";
+        $query = "INSERT into karyawan (nama_karyawan, nama_jabatan, rating, karyawan_id_cabang,username) VALUES (?,?,?,?,?)";
         $stmt = $link->prepare($query);
         $stmt->bindValue(1, $karyawan->getNamaKaryawan());
         $stmt->bindValue(2, $karyawan->getNamaJabatan());
         $stmt->bindValue(3, $karyawan->getRating());
         $stmt->bindValue(4, $karyawan->getKaryawanIdCabang());
+        $stmt->bindValue(5,$karyawan->getUsername());
         $link->beginTransaction();
         if ($stmt->execute()) {
             $link->commit();
@@ -76,7 +77,7 @@ class KaryawanDAO {
 
     public function updateKaryawan(karyawan $karyawan) {
         $link = PDO_util::createConnection();
-        $query = "UPDATE karyawan SET nama_karyawan = ?, nama_jabatan = ?, rating = ?, karyawan_id_cabang = ? WHERE id_karyawan = ?";
+        $query = "UPDATE karyawan SET nama_karyawan = ?, nama_jabatan = ?, Rating = ?, karyawan_id_cabang = ? WHERE id_karyawan = ?";
         $stmt = $link->prepare($query);
         $stmt->bindValue(1, $karyawan->getNamaKaryawan());
         $stmt->bindValue(2, $karyawan->getNamaJabatan());
