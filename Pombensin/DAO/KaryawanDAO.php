@@ -110,25 +110,19 @@ class KaryawanDAO {
 
     public function karyawanTerbaik() {
         $link = PDO_util::createConnection();
-        $query = "SELECT * FROM karyawan HAVING MAX(rating)";
+        $query = "SELECT nama_karyawan, Rating, c.nama_cabang as 'nama_cabang' FROM karyawan k JOIN cabang c ON k.karyawan_id_cabang = c.id_cabang WHERE rating = (SELECT MAX(Rating) FROM karyawan)";
         $result = $link->query($query);
-        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Album');
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'karyawan');
         PDO_util::closeConnection($link);
         return $result;
     }
 
-    /**
-     * @param $id_cabang
-     * @return karyawan
-     */
     public function karyawanTerbaikCabang($id_cabang) {
         $link = PDO_util::createConnection();
-        $query = "SELECT * FROM karyawan HAVING MAX(rating) WHERE karyawan_id_cabang = ?";
-        $stmt = $link->prepare($query);
-        $stmt->bindParam(1, $id_cabang);
-        $stmt->setFetchMode(PDO::FETCH_OBJ);
-        $stmt->execute();
+        $query = "SELECT nama_karyawan, Rating, c.nama_cabang as 'nama_cabang' FROM karyawan k JOIN cabang c ON k.karyawan_id_cabang = c.id_cabang WHERE rating = (SELECT MAX(Rating) FROM karyawan WHERE karyawan_id_cabang = ". $id_cabang .")";
+        $result = $link->query($query);
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'karyawan');
         PDO_util::closeConnection($link);
-        return $stmt->fetchObject('karyawan');
+        return $result;
     }
 }

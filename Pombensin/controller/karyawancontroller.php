@@ -67,7 +67,24 @@ class karyawancontroller{
         include_once '../view/update_karyawan.php';
     }
 
-
+    public function topKaryawan() {
+        $change = 0;
+        $submit = filter_input(INPUT_POST,"btnSubmit");
+        if(isset($submit)) {
+            $cabang = filter_input(INPUT_POST, 'idCabang');
+            if ($cabang == 'selectAll') {
+                $resultKaryawan = $this->karyawandao->karyawanTerbaik();
+            } else {
+                $resultKaryawan = $this->karyawandao->karyawanTerbaikCabang($cabang);
+            }
+            $change = 1;
+        }
+        if ($change == 0) {
+            $resultKaryawan = $this->karyawandao->karyawanTerbaik();
+        }
+        $resultCabang = $this->cabangdao->fetchCabangData();
+        include_once '../view/showkaryawan.php';
+    }
 }
 
 

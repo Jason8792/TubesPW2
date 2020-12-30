@@ -8,6 +8,7 @@ include_once '../controller/karyawancontroller.php';
 include_once '../controller/membercontroller.php';
 include_once '../controller/catatancontroller.php';
 include_once '../controller/catatancabangcontroller.php';
+include_once '../controller/transaksiController.php';
 include_once '../DAO/BahanBakarDAO.php';
 include_once '../DAO/CabangDAO.php';
 include_once '../DAO/KaryawanDAO.php';
@@ -136,12 +137,15 @@ if (!isset($_SESSION['my_session'])) {
                 case 'catatancab':
                     $catatan= new catatancabangcontroller();
                     $catatan->index();
+                    break;
 //              Karyawan
                 case 'transaksi':
-                    include_once './transaksi.php';
+                    $transaksi = new transaksiController();
+                    $transaksi->index();
                     break;
                 case 'showkaryawan':
-                    include_once './showkaryawan.php';
+                    $karyawan = new karyawancontroller();
+                    $karyawan->topKaryawan();
                     break;
 //              Member
                 case 'rating':
