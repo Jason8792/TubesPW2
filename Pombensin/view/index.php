@@ -9,6 +9,7 @@ include_once '../controller/membercontroller.php';
 include_once '../controller/catatancontroller.php';
 include_once '../controller/catatancabangcontroller.php';
 include_once '../controller/transaksiController.php';
+include_once '../controller/ratingController.php';
 include_once '../DAO/BahanBakarDAO.php';
 include_once '../DAO/CabangDAO.php';
 include_once '../DAO/KaryawanDAO.php';
@@ -80,7 +81,7 @@ if (!isset($_SESSION['my_session'])) {
                     <?php } else if ($_SESSION['session_job']  == 'member') { ?>
                         <!--             Punya Member  -->
                         <li><a href="?navito=rating">Rating</a></li>
-                        <li><a href="poin">Poin</a></li>
+                        <li><a href="?navito=poin">Poin</a></li>
                     <?php } ?>
                 <?php } else { ?>
                     <li><a href="?navito=login">Log In</a></li>
@@ -149,10 +150,12 @@ if (!isset($_SESSION['my_session'])) {
                     break;
 //              Member
                 case 'rating':
-                    include_once './rating.php';
+                    $rating = new ratingController();
+                    $rating->index();
                     break;
                 case 'poin':
-                    include_once './poin.php';
+                    $member = new membercontroller();
+                    $member->showPoin();
                     break;
                 default:
                     include_once './home.php';

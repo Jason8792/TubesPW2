@@ -66,6 +66,17 @@
             <div class="select-dropdown"></div>
         </div>
     </div>
+    <div class="input-group">
+        <label class="label">Pemakaian Poin</label>
+        <div class="rs-select2 js-select-simple select--no-search">
+            <select name="pakaiPoin">
+                <option disabled="disabled" selected="selected">Choose option</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <div class="select-dropdown"></div>
+        </div>
+    </div>
     <div class="p-t-15">
         <input class="btn btn--radius-2 btn--blue" type="submit" Value="Submit" name="btnSubmit"/>
     </div>

@@ -20,11 +20,29 @@ class transaksiController {
             $tanggal = filter_input(INPUT_POST, 'tanggal');
             $totalHarga = filter_input(INPUT_POST, 'totalHarga');
             $idMember = filter_input(INPUT_POST, 'idMember');
-            if ($idMember == '') {
-                $idMember = null;
-            }
             $idBarang = filter_input(INPUT_POST, 'idBarang');
             $idCabang = filter_input(INPUT_POST, 'idCabang');
+            $pakaiPoin = filter_input(INPUT_POST, 'pakaiPoin');
+            if ($idMember == '') {
+                $idMember = null;
+                $pakaiPoin = 'false';
+            } else {
+                $member = $this->memberDAO->fetchMember($idMember);
+                $barang = $this->barangDAO->fetchBahanBakar($idBarang);
+                $poin = ($totalHarga / $barang->getHargaJual()) * $barang->getPoin();
+                $time = date("Y-m-d");
+                $kadaluarsa = date("Y-m-d", strtotime("+2 month", $time));
+                $member->setPoin($poin);
+                $member->setKadaluarsa($kadaluarsa);
+                $this->memberDAO->updateMember($member);
+            }
+            if ($pakaiPoin == 'true' && $member->getPoin() >= 150) {
+                $member = $this->memberDAO->fetchMember($idMember);
+                $poin = $member->getPoin() - 150;
+                $member->setPoin($poin);
+                $this->memberDAO->updateMember($member);
+                $totalHarga = $totalHarga - 10000;
+            }
             $transaksi = new transaksi();
             $transaksi->setTanggalTransaksi($tanggal);
             $transaksi->setJumlahHarga($totalHarga);

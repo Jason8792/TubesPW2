@@ -15,7 +15,6 @@ class MemberDAO{
      * @param $usernamemember
      * @return member
      */
-
     public function logmember($usernamemember) {
         $link = PDO_util::createConnection();
         $query = "SELECT * FROM member WHERE username = ?";
@@ -26,11 +25,12 @@ class MemberDAO{
         PDO_util::closeConnection($link);
         return $stmt->fetchObject('member');
     }
+
+
     /**
      * @param $id_member
      * @return member
      */
-
     public function fetchMember($id_member) {
         $link = PDO_util::createConnection();
         $query = "SELECT * FROM member WHERE id_member = ?";

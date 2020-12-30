@@ -64,4 +64,8 @@ class membercontroller{
 
     }
 
+    public function showPoin() {
+        $resultMember = $this->member->logmember($_SESSION['session_user']);
+        include_once '../view/poin.php';
+    }
 }
