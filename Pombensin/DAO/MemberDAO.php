@@ -45,7 +45,7 @@ class MemberDAO{
     public function addMember(member $member) {
         $result = 0;
         $link = PDO_util::createConnection();
-        $query = "INSERT into member (nama_member, poin, tanggal_ulang_tahun, kadaluarsa, email, username) VALUES (?,?,?,?,?,?)";
+        $query = "INSERT into member (nama_member, poin, tanggal_ulang_tahun, kadaluarsa , email, username , nomor_mobil,nomor_motor ) VALUES (?,?,?,?,?,?,?,?)";
         $stmt = $link->prepare($query);
         $stmt->bindValue(1, $member->getNamaMember());
         $stmt->bindValue(2, $member->getPoin());
@@ -53,6 +53,8 @@ class MemberDAO{
         $stmt->bindValue(4, $member->getKadaluarsa());
         $stmt->bindValue(5, $member->getEmail());
         $stmt->bindValue(6,$member->getUsername());
+        $stmt->bindValue(7,$member->getNomorMobil());
+        $stmt->bindValue(8,$member->getNomorMotor());
         $link->beginTransaction();
         if ($stmt->execute()) {
             $link->commit();
@@ -79,14 +81,16 @@ class MemberDAO{
 
     public function updateMember(member $member) {
         $link = PDO_util::createConnection();
-        $query = "UPDATE member SET nama_member = ?, poin = ?, tanggal_ulang_tahun = ?, kadaluarsa = ?, email = ? WHERE id_member = ?";
+        $query = "UPDATE member SET nama_member = ?, poin = ?, tanggal_ulang_tahun = ?, kadaluarsa = ?, email = ? , nomor_mobil=? , nomor_motor=? WHERE id_member = ?";
         $stmt = $link->prepare($query);
         $stmt->bindValue(1, $member->getNamaMember());
         $stmt->bindValue(2, $member->getPoin());
         $stmt->bindValue(3, $member->getTanggalUlangTahun());
         $stmt->bindValue(4, $member->getKadaluarsa());
         $stmt->bindValue(5, $member->getEmail());
-        $stmt->bindValue(6, $member->getIdMember());
+        $stmt->bindValue(6, $member->getNomorMobil());
+        $stmt->bindValue(7, $member->getNomorMotor());
+        $stmt->bindValue(8, $member->getIdMember());
         $link->beginTransaction();
         if ($stmt->execute()) {
             $link->commit();
@@ -94,5 +98,19 @@ class MemberDAO{
             $link->rollBack();
         }
         PDO_util::closeConnection($link);
+    }
+    /**
+     * @param $tanggal
+     * @return member
+     */
+    public function Check($tanggal){
+        $link = PDO_util::createConnection();
+        $query = "SELECT * FROM member WHERE kadaluarsa = ? ";
+        $stmt = $link->prepare($query);
+        $stmt->bindParam(1, $tanggal);
+        $stmt->setFetchMode(PDO::FETCH_OBJ);
+        $stmt->execute();
+        PDO_util::closeConnection($link);
+        return $stmt->fetchObject('member');
     }
 }

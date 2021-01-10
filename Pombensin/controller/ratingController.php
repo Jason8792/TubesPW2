@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 
 class ratingController {
     private $karyawanDAO;
@@ -14,13 +14,18 @@ class ratingController {
             $rating = filter_input(INPUT_POST, 'rating');
             $idKaryawan = filter_input(INPUT_POST, 'idKaryawan');
             $karyawanBefore = $this->karyawanDAO->fetchKaryawan($idKaryawan);
-            $rating = $rating + $karyawanBefore->getRating();
+            if($karyawanBefore->getRating() == 0 ){
+                $rating = $rating + $karyawanBefore->getRating();
+            }
+            else{
+                $rating = round($rating + $karyawanBefore->getRating() / 2);
+            }
             $karyawan = new karyawan();
             $karyawan->setIdKaryawan($idKaryawan);
             $karyawan->setRating($rating);
             $this->karyawanDAO->updateRating($karyawan);
         }
-        $resultKaryawan = $this->karyawanDAO->fetchKaryawanData();
+        $resultKaryawan = $this->karyawanDAO->fetchKaryawanRating();
         include_once '../view/rating.php';
     }
 }

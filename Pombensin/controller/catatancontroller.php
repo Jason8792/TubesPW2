@@ -1,4 +1,5 @@
 <?php
+ob_start();
 class catatancontroller{
     private $transaksidao;
     public function __construct()

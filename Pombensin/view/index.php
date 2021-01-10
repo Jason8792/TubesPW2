@@ -56,6 +56,10 @@ if (!isset($_SESSION['my_session'])) {
         <script type="text/javascript" src="../js/controller.js"></script>
     </head>
     <body>
+    <?php
+        $member= new membercontroller();
+        $member->remember();
+    ?>
         <!--Tag for header-->
         <header>
             <h1>Pemrograman Web 2</h1>

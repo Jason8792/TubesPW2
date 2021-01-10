@@ -4,7 +4,16 @@
 class KaryawanDAO {
     public function fetchKaryawanData() {
         $link = PDO_util::createConnection();
-        $query = "SELECT k.* , c.nama_cabang FROM karyawan k JOIN cabang c ON k.karyawan_id_cabang=c.id_cabang ORDER by k.Rating";
+        $query = "SELECT k.* , c.nama_cabang FROM karyawan k JOIN cabang c ON k.karyawan_id_cabang=c.id_cabang WHERE NOT k.nama_jabatan = 'Owner' ORDER by k.Rating";
+        $result = $link->query($query);
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'karyawan');
+        PDO_util::closeConnection($link);
+        return $result;
+    }
+    
+    public function fetchKaryawanRating() {
+        $link = PDO_util::createConnection();
+        $query = "SELECT k.* , c.nama_cabang FROM karyawan k JOIN cabang c ON k.karyawan_id_cabang=c.id_cabang WHERE NOT k.nama_jabatan = 'Owner'  ORDER by k.Rating";
         $result = $link->query($query);
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'karyawan');
         PDO_util::closeConnection($link);

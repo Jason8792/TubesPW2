@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 class karyawancontroller{
     private $cabangdao;
     private $karyawandao;

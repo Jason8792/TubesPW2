@@ -1,20 +1,14 @@
 <form method="POST">
-    <div class="row row-space">
-        <div class="col-2">
-            <div class="input-group">
-                <label class="label">Tanggal</label>
-                <input class="input--style-4" type="text" name="tanggal">
-            </div>
-        </div>
-    </div>
+    
     <div class="row row-space">
         <div class="col-2">
             <div class="input-group">
                 <label class="label">Total Harga</label>
-                <input class="input--style-4" type="text" name="totalHarga">
+                <input class="input--style-4" type="text" name="totalharga">
             </div>
         </div>
     </div>
+    
     <div class="input-group">
         <label class="label">Member</label>
         <?php
@@ -24,14 +18,18 @@
             <select name="idMember">
                 <option disabled="disabled" selected="selected">Choose option</option>
                 <?php
+                
                 foreach ($resultMember as $member){
-                    echo "<option value = '". $member->getIdMember() ."'>". $member->getNamaMember() ."</option>";
+    if($member->getNomorMobil()!=null){echo  "<option value = '". $member->getIdMember() ."+mobil'>". $member->getNamaMember() ." - ". $member->getNomorMobil() ."</option>";}
+    if($member->getNomorMotor()!=null){echo "<option value = '". $member->getIdMember() ."+motor'>". $member->getNamaMember() ." - ". $member->getNomorMotor() ."</option>";}
+                
                 }
                 ?>
             </select>
             <div class="select-dropdown"></div>
         </div>
     </div>
+    
     <div class="input-group">
         <label class="label">Barang</label>
         <?php

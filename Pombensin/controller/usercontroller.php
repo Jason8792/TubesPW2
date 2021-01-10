@@ -1,5 +1,7 @@
 <?php
 
+ob_start();
+
 class usercontroller{
     private $userDAO;
     private $memberDAO;
@@ -39,4 +41,5 @@ class usercontroller{
         header("location:index.php");
     }
 }
+
 ?>

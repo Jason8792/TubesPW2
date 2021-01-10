@@ -5,13 +5,14 @@ class TransaksiDAO {
     public function addTransaksi(transaksi $transaksi) {
         $result = 0;
         $link = PDO_util::createConnection();
-        $query = "INSERT into transaksi (tanggal_transaksi, jumlah_harga, id_member, id_barang, id_cabang) VALUES (?,?,?,?,?)";
+        $query = "INSERT into transaksi (tanggal_transaksi, jumlah_harga, id_member, id_barang, id_cabang,nomor_kendaraan) VALUES (?,?,?,?,?,?)";
         $stmt = $link->prepare($query);
         $stmt->bindValue(1, $transaksi->getTanggalTransaksi());
         $stmt->bindValue(2, $transaksi->getJumlahHarga());
         $stmt->bindValue(3, $transaksi->getIdMember());
         $stmt->bindValue(4, $transaksi->getIdBarang());
         $stmt->bindValue(5, $transaksi->getIdCabang());
+        $stmt->bindValue(6,$transaksi->getNomorKendaraan());
         $link->beginTransaction();
         if ($stmt->execute()) {
             $link->commit();

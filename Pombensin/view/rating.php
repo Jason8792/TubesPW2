@@ -3,7 +3,7 @@
         <div class="col-2">
             <div class="input-group">
                 <label class="label">Rating</label>
-                <input class="input--style-4" type="text" name="rating">
+                <input class="input--style-4" type="text" name="rating" placeholder="Maksimal 5">
             </div>
         </div>
     </div>

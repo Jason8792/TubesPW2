@@ -40,8 +40,22 @@
             </div>
         </div>
     </div>
-
-
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">Nomor Motor</label>
+                <input class="input--style-4" type="text" name="nomormotor" value="<?php echo $resultupd-> getNomorMotor()?>" >
+            </div>
+        </div>
+    </div>
+    <div class="row row-space">
+        <div class="col-2">
+            <div class="input-group">
+                <label class="label">Nomor Mobil</label>
+                <input class="input--style-4" type="text" name="nomormobil" value="<?php echo $resultupd-> getNomorMobil()?>" >
+            </div>
+        </div>
+    </div>
     <div class="p-t-15">
         <input class="btn btn--radius-2 btn--blue" type="submit" Value="Submit" name="updbtnSubmit"/>
     </div>
