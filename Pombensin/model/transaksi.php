@@ -9,6 +9,22 @@ class transaksi {
     private $id_barang;
     private $id_cabang;
     private $nama_cabang;
+    private $nomor_kendaraan;
+    /**
+     * @return mixed
+     */
+    public function getNomorKendaraan()
+    {
+        return $this->nomor_kendaraan;
+    }
+
+    /**
+     * @param mixed $nomor_kendaraan
+     */
+    public function setNomorKendaraan($nomor_kendaraan)
+    {
+        $this->nomor_kendaraan = $nomor_kendaraan;
+    }
 
 
     /**

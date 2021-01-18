@@ -2,7 +2,7 @@
 
 
 class MemberDAO{
-    public function fetchMemberData() {
+     public function fetchMemberData() {
         $link = PDO_util::createConnection();
         $query = "SELECT * FROM member";
         $result = $link->query($query);

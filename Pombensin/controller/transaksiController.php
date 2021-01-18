@@ -23,16 +23,17 @@ class transaksiController {
             $idBarang = filter_input(INPUT_POST, 'idBarang');
             $idCabang = filter_input(INPUT_POST, 'idCabang');
             $pakaiPoin = filter_input(INPUT_POST, 'pakaiPoin');
-            
+
             $piece=explode("+",$idMember);
             if ($piece[0] == '') {
                 $piece[0] = null;
                 $pakaiPoin = 'false';
             }
             else {
+
                 $barang = $this->barangDAO->fetchBahanBakar($idBarang);
                 $member = $this->memberDAO->fetchMember($piece[0]);
-                
+
                 if($piece[1]=='mobil'){
                     $nomorkendaraan = $member->getNomorMobil();
                 }
@@ -46,17 +47,19 @@ class transaksiController {
                 $time = date("Y-m-d");
                 $str = strtotime($time);
                 $kadaluarsa = date("Y-m-d", strtotime("+1 year", $str));
+                $poin = $poin + $member->getPoin() ;
                 $member->setPoin($poin);
                 $member->setKadaluarsa($kadaluarsa);
                 $this->memberDAO->updateMember($member);
-            if ($pakaiPoin == 'true' && $member->getPoin() >= 150) {
-                $member = $this->memberDAO->fetchMember($piece[0]);
-                $poin = $member->getPoin() - 150;
-                $member->setPoin($poin);
-                $this->memberDAO->updateMember($member);
-                $totalHarga = $totalHarga - 10000;
+                if ($pakaiPoin == 'true' && $member->getPoin() >= 150) {
+                    $member = $this->memberDAO->fetchMember($piece[0]);
+                    $poin = $member->getPoin() - 150;
+
+                    $member->setPoin($poin);
+                    $this->memberDAO->updateMember($member);
+                    $totalHarga = $totalHarga - 10000;
+                }
             }
-        }
             $transaksi = new transaksi();
             $transaksi->setTanggalTransaksi($tanggal);
             $transaksi->setJumlahHarga($totalHarga);

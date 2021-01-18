@@ -46,7 +46,7 @@ class membercontroller{
         }
 
         $result = $this->member->fetchMemberData();
-        include_once 'view/editmember.php';
+        include_once '../view/editmember.php';
     }
     public function update(){
         $idmember = filter_input(INPUT_GET,"idmember");

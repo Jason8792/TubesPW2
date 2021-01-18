@@ -1,5 +1,5 @@
 <form method="POST">
-    
+
     <div class="row row-space">
         <div class="col-2">
             <div class="input-group">
@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="input-group">
         <label class="label">Member</label>
         <?php
@@ -18,18 +18,18 @@
             <select name="idMember">
                 <option disabled="disabled" selected="selected">Choose option</option>
                 <?php
-                
+
                 foreach ($resultMember as $member){
-    if($member->getNomorMobil()!=null){echo  "<option value = '". $member->getIdMember() ."+mobil'>". $member->getNamaMember() ." - ". $member->getNomorMobil() ."</option>";}
-    if($member->getNomorMotor()!=null){echo "<option value = '". $member->getIdMember() ."+motor'>". $member->getNamaMember() ." - ". $member->getNomorMotor() ."</option>";}
-                
+                    if($member->getNomorMobil()!=null){echo  "<option value = '". $member->getIdMember() ."+mobil'>". $member->getNamaMember() ." - ". $member->getNomorMobil() ."</option>";}
+                    if($member->getNomorMotor()!=null){echo "<option value = '". $member->getIdMember() ."+motor'>". $member->getNamaMember() ." - ". $member->getNomorMotor() ."</option>";}
+
                 }
                 ?>
             </select>
             <div class="select-dropdown"></div>
         </div>
     </div>
-    
+
     <div class="input-group">
         <label class="label">Barang</label>
         <?php

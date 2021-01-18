@@ -49,7 +49,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PW2_UTS_Jason_1872038" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -80,6 +80,8 @@
       <workItem from="1609475753354" duration="11599000" />
       <workItem from="1609509486309" duration="1459000" />
       <workItem from="1609675432091" duration="243000" />
+      <workItem from="1610336659880" duration="360000" />
+      <workItem from="1610948910817" duration="2954000" />
     </task>
     <servers />
   </component>
@@ -115,10 +117,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1608956192865" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1601257059242">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1610337019816">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1601257059242" />
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1610337019816" />
     <state x="495" y="86" key="NewPhpClassDialog" timestamp="1609321694593">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

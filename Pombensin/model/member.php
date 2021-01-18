@@ -7,6 +7,36 @@ class member{
     private $kadaluarsa;
     private $email;
     private $username;
+    private $nomor_mobil;
+    private $nomor_motor;
+
+    /**
+     * @param mixed $nomor_motor
+     */
+    public function setNomorMotor($nomor_motor){
+        $this->nomor_motor = $nomor_motor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNomorMotor(){
+        return $this->nomor_motor;
+    }
+
+    /**
+     * @param mixed $nomor_mobil
+     */
+    public function setNomorMobil($nomor_mobil){
+        $this->nomor_mobil = $nomor_mobil;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNomorMobil(){
+        return $this->nomor_mobil;
+    }
 
     /**
      * @return mixed
